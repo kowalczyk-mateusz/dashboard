@@ -1,8 +1,11 @@
-import React, {useEffect, useState} from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import React, {useEffect} from 'react'
+import {useDispatch} from 'react-redux'
 import {usersAction} from './Actions/usersAction'
 import styled from 'styled-components'
 import Dashboard from './Components/Dashboard'
+import {Switch, Route} from 'react-router-dom'
+import NewUser from './Components/NewUser'
+import EditUser from './Components/EditUser'
 function App() {
 
   const dispatch = useDispatch()
@@ -14,7 +17,17 @@ function App() {
   return (
    <StyledApp>
      <h1>Dashboard</h1>
+     <Switch>
+     <Route path="/" exact>
      <Dashboard/>
+     </Route>
+     <Route path="/newUserForm">
+     <NewUser/>
+     </Route>
+     <Route path="/editUser/:id">
+       <EditUser/>
+     </Route>
+     </Switch>
    </StyledApp>
   );
 }

@@ -16,6 +16,16 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.filter(item => item !==action.payload)
             }
+        case "SORT_USERS_ASC":
+            return{
+                ...state,
+                users: state.users.sort(function(a,b){return a.username.localeCompare(b.username)})
+            }
+        case "SORT_USERS_DESC":
+            return{
+                ...state,
+                users: state.users.sort(function(a,b){return b.username.localeCompare(a.username)})
+            }
         default:
             return{...state}
     }

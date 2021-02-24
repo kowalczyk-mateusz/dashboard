@@ -1,20 +1,13 @@
-import React, { useEffect } from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import React, {useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import {updateUser} from '../Actions/usersAction'
 import styled from 'styled-components'
-
+import {Link} from 'react-router-dom'
+import Popup from './Popup'
 const SingleUser = ({id, name, username, email, city}) =>{
-    const {users, isLoading} = useSelector((state)=> state.users)
-    const dispatch = useDispatch()
-    const deleteItems = ()=>{
-        const findUser = users.find(el => {
-            return el.id === id;
-        })
-        if(findUser.id === id){
-            users.splice(findUser.id - 1, 1)    
-            dispatch({type: "DELETE_DATA"})
-        }
+const [popup, setpopup] = useState(false);
 
-    }
+
     return(
         <StyledSingleUser>
             <Id>
@@ -33,11 +26,13 @@ const SingleUser = ({id, name, username, email, city}) =>{
                 {city}
             </City>
             <Edit>
-                <button>edit</button>
+            <Link to={`/editUser/${id}`}><button>edit</button></Link>
             </Edit>
             <Delete>
-                <button value={id} onClick={deleteItems}>delete</button>
+                <button value={id} onClick={()=> setpopup(!popup) } >delete</button>
             </Delete>
+            {popup && (
+            <Popup id={id} popup={popup} setpopup={setpopup}/>)}
         </StyledSingleUser>
     )
 }
@@ -49,6 +44,7 @@ grid-template-columns: repeat(7, 1fr);
 border-bottom: 1px solid #C4C4C4;
 padding: 2rem 0rem;
 align-items: center;
+position: relative;
 `
 const Id = styled.p`
 text-align: center;
