@@ -68,6 +68,11 @@ cursor: pointer;
 &:hover{
     background-color: #fdc55c; 
 }}
+@media (max-width: 650px){
+    button{
+        padding: 0.7rem 0.25rem;
+    }
+}
 `
 const Delete = styled.div`
 text-align: center;
@@ -80,5 +85,10 @@ cursor: pointer;
 &:hover{
     background-color: #ff4040; 
 }}
+@media (max-width: 650px){
+    button{
+        padding: 0.7rem 0.25rem;
+    }
+}
 `
 export default SingleUser

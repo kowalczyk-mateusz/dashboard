@@ -13,27 +13,40 @@ const NewUser = () =>{
     const sortedUsers = users.sort(function(a,b){return a.id - b.id})
     const usersLength = sortedUsers.length - 1;
     const lastId = sortedUsers[usersLength].id + 1;
+
     const submitData = (e) =>{
         const emailError = document.querySelector('.email')
         const nameError = document.querySelector('.name')
-    if(name.length === 0 && email.length === 0){
+
+    if(!name && !email){
+
         emailError.classList.add('error')
         nameError.classList.add('error')
         e.preventDefault()
         setValidateEmail(true)
         setValidateName(true)
-    } else if(name.length === 0){
+
+    } else if(!name){
+
         e.preventDefault()
         setValidateName(true)
         setValidateEmail(false)
         emailError.classList.remove('error')
-    } else if(email.length === 0){
+        nameError.classList.add('error')
+
+    } else if(!email || !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i.test(email)){
+
         e.preventDefault()
         setValidateName(false)
         setValidateEmail(true)
         nameError.classList.remove('error')
+        emailError.classList.add('error')
+
     }
     else{
+
+        emailError.classList.remove('error')
+        nameError.classList.remove('error')
         users.push({
             id: lastId,
             name: name,
@@ -44,6 +57,7 @@ const NewUser = () =>{
             }
         })
         dispatch(newUser(lastId, name, email))
+
     }
 
     }
@@ -174,6 +188,7 @@ border: 1px solid red;
 border-radius: 5px;
 transition: all 0.1s ease-in-out;
 outline: none;
+cursor: pointer;
 &:hover{
     color: white;
     background-color: red;
@@ -186,6 +201,7 @@ background-color: green;
 border-radius: 5px;
 margin-left: 1rem;
 transition: all 0.1s ease-in-out;
+cursor: pointer;
 &:hover{
     background-color: #035f03; 
 }

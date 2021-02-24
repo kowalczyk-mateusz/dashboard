@@ -42,7 +42,17 @@ export const sortAction = () => async (dispatch) =>{
 }
 
 export const newUser = (id, name, email) => async (dispatch)=>{
-    const data = await axios.post(`https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data?id=${id}&name=${name}&email=${email}`)
+    const data = await axios.post(`https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data?`,
+    {
+        id,
+        name,
+        email,
+        address: {
+            city: ''
+        }
+
+    })
+    console.log(data)
     dispatch({
         type: "UPDATE_DATA",
         payload:{
@@ -52,7 +62,15 @@ export const newUser = (id, name, email) => async (dispatch)=>{
 }
 
 export const editUser = (id, name,email, username, city) => async (dispatch) =>{
-    const data = await axios.put(`https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data/${id}/?name=${name}&email=${email}&username=${username}&city=${city}`)
+    const data = await axios.put(`https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data/${id}/?`, {
+        name,
+        email,
+        username,
+        address: {
+            city,
+        }
+    })
+    console.log(data)
     dispatch({
         type: "UPDATE_DATA",
         payload:{

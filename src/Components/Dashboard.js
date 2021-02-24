@@ -20,7 +20,7 @@ const Dashboard = () =>{
         <StyledDashboard>
             <Heading>
                 <p>User list</p>
-                <button><StyledLink to ="/newUserForm">Add new</StyledLink></button>
+                <StyledLink to ="/newUserForm"><button>Add new</button></StyledLink>
             </Heading>
             <DataContainer>
             <Data>
@@ -73,7 +73,8 @@ justify-content: space-between;
 align-items: center;
 border-bottom: 1px solid #C4C4C4;
 p{
-    font-size: 1.2rem;
+    padding-left: 1rem;
+    font-size: 1.4rem;
 
 }
 
@@ -82,6 +83,7 @@ button{
     padding: 0.7rem 3rem;
     border-radius: 5px;
     color: white;
+    cursor: pointer;
 }
 `
 const Labels = styled.div`
