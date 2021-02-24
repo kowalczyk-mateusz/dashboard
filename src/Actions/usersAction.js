@@ -15,8 +15,8 @@ export const usersAction = () => async (dispatch) =>{
     })
 }
 
-export const updateAction = () => async (dispatch) =>{
-    const data = await axios.get(`https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data`)
+export const updateAction = (id) => async (dispatch) =>{
+    const data = await axios.delete(`https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data/${id}`)
     dispatch({
         type: "UPDATE_DATA",
         payload:{
@@ -37,6 +37,26 @@ export const sortAction = () => async (dispatch) =>{
         type: "SORT_USERS_DESC",
         payload:{
             users: data.data
+        }
+    })
+}
+
+export const newUser = (id, name, email) => async (dispatch)=>{
+    const data = await axios.post(`https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data?id=${id}&name=${name}&email=${email}`)
+    dispatch({
+        type: "UPDATE_DATA",
+        payload:{
+            users: data.data,
+        }
+    })
+}
+
+export const editUser = (id, name, username, city, email) => async (dispatch) =>{
+    const data = await axios.put(`https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data/${id}?&name=${name}&email=${email}&username=${username}$city=${city}`)
+    dispatch({
+        type: "UPDATE_DATA",
+        payload:{
+            users: data.data,
         }
     })
 }

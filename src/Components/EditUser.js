@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import {Link, useParams} from 'react-router-dom'
-import { useSelector } from 'react-redux';
+import { useSelector , useDispatch} from 'react-redux';
+import {editUser} from '../Actions/usersAction'
 const EditUser = () =>{
-
+    const dispatch = useDispatch()
     const {id} = useParams();
     const {users} = useSelector((state) => state.users)
     const idNumber = parseInt(id)
@@ -17,6 +18,7 @@ const EditUser = () =>{
         foundUser[0]["username"] = username
         foundUser[0]["email"] = email
         foundUser[0]["address"]["city"] = city
+        dispatch(editUser(idNumber, name, email, username, city))
     }
     return(
         <StyledNewUser>

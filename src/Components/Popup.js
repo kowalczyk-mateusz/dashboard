@@ -9,7 +9,7 @@ const Popup = ({id, popup, setpopup}) =>{
         const foundUser = users.filter(user => user.id === id)
         const foundUserId = users.indexOf(...foundUser);
         users.splice(foundUserId, 1)
-        dispatch(updateAction())
+        dispatch(updateAction(id))
         setpopup(false)
     }
     return(

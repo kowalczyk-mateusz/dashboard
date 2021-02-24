@@ -1,18 +1,40 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
-
+import {newUser} from '../Actions/usersAction'
 const NewUser = () =>{
+    const dispatch = useDispatch()
     const {users} = useSelector((state)=> state.users)
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+    const [validateName, setValidateName] = useState(false)
+    const [validateEmail, setValidateEmail] = useState(false)
 
     const sortedUsers = users.sort(function(a,b){return a.id - b.id})
     const usersLength = sortedUsers.length - 1;
     const lastId = sortedUsers[usersLength].id + 1;
-    const submitData = () =>{
-    
+    const submitData = (e) =>{
+        const emailError = document.querySelector('.email')
+        const nameError = document.querySelector('.name')
+    if(name.length === 0 && email.length === 0){
+        emailError.classList.add('error')
+        nameError.classList.add('error')
+        e.preventDefault()
+        setValidateEmail(true)
+        setValidateName(true)
+    } else if(name.length === 0){
+        e.preventDefault()
+        setValidateName(true)
+        setValidateEmail(false)
+        emailError.classList.remove('error')
+    } else if(email.length === 0){
+        e.preventDefault()
+        setValidateName(false)
+        setValidateEmail(true)
+        nameError.classList.remove('error')
+    }
+    else{
         users.push({
             id: lastId,
             name: name,
@@ -22,6 +44,9 @@ const NewUser = () =>{
                 city: '',
             }
         })
+        dispatch(newUser(lastId, name, email))
+    }
+
     }
 
     return(
@@ -30,13 +55,25 @@ const NewUser = () =>{
                 <Headline>Form</Headline>
                 <Form>
                     <Name>
+                        <NameBox>
                         <label  htmlFor="Name">Name</label>
                         <input onChange={(e)=> setName(e.target.value)} className="name" type="text" placeholder="Name" required/>
+                        </NameBox>
+                        {validateName &&(
+                    <p>Name is required</p>
+                    )}
                     </Name>
+
                     <Email>
+                        <EmailBox>
                         <label htmlFor="Email" >Email</label>
                         <input onChange={(e)=> setEmail(e.target.value)} className="email" type="email" placeholder="Email" required/>
+                        </EmailBox>
+                        {validateEmail && (
+                    <p>Email is required</p>      
+                    )}
                     </Email>
+
                     <Buttons>
                         <StyledLink to='/'><Cancel>Cancle</Cancel></StyledLink>
                         <StyledLink to="/"><Submit onClick={submitData}>Submit</Submit></StyledLink>
@@ -71,11 +108,18 @@ display: flex;
 flex-direction: column;
 align-items: flex-end;
 padding: 3rem 3rem 3rem 8rem;
+
 `
 const Name = styled.div`
 display: flex;
 width: 100%;
 margin-bottom: 2rem;
+flex-direction: column;
+p{
+    padding-top: 1rem;
+    padding-left: 6.5rem;
+    color: red;
+}
 label{
     font-size: 1rem;
     padding-right: 4rem;
@@ -96,6 +140,7 @@ input{
 const Email = styled.div`
 display: flex;
 width: 100%;
+flex-direction: column;
 label{
     font-size: 1rem;
     padding-right: 4rem;
@@ -108,9 +153,15 @@ input{
     &:focus{
     outline: none;
 }
+
 &.error{
         border: 1px solid red;
     }
+}
+p{
+    padding-top: 1rem;
+    padding-left: 6.5rem;
+    color: red;
 }
 `
 const Buttons = styled.div`
@@ -142,5 +193,11 @@ transition: all 0.1s ease-in-out;
 `
 const StyledLink = styled(Link)`
 color: white;
+`
+const NameBox = styled.div`
+display: flex;
+`
+const EmailBox = styled.div`
+display: flex;
 `
 export default NewUser
