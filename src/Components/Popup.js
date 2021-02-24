@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import {updateAction} from '../Actions/usersAction'
 import {useSelector, useDispatch} from 'react-redux'
 const Popup = ({id, popup, setpopup}) =>{
-    const {users, isLoading} = useSelector((state)=> state.users)
+    const {users} = useSelector((state)=> state.users)
     const dispatch = useDispatch()
     const deleteItems = ()=>{
         const foundUser = users.filter(user => user.id === id)

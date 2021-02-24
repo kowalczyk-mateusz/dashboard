@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import SingleUser from './SingleUser'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {sortAction} from '../Actions/usersAction'
 const Dashboard = () =>{
     const {users} = useSelector((state)=> state.users)
     const dispatch = useDispatch()

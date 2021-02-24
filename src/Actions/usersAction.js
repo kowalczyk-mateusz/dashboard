@@ -51,7 +51,7 @@ export const newUser = (id, name, email) => async (dispatch)=>{
     })
 }
 
-export const editUser = (id, name, username, city, email) => async (dispatch) =>{
+export const editUser = (id, name,email, username, city) => async (dispatch) =>{
     const data = await axios.put(`https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data/${id}/?name=${name}&email=${email}&username=${username}&city=${city}`)
     dispatch({
         type: "UPDATE_DATA",

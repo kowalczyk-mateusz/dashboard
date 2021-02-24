@@ -15,8 +15,8 @@ const EditUser = () =>{
     const [email, setEmail] = useState(foundUser[0].email)
     const editUserHandler = () =>{
         foundUser[0]["name"] = name
-        foundUser[0]["username"] = username
         foundUser[0]["email"] = email
+        foundUser[0]["username"] = username
         foundUser[0]["address"]["city"] = city
         dispatch(editUser(idNumber, name, email, username, city))
     }
