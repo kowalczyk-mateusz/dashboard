@@ -16,7 +16,6 @@ const Dashboard = () =>{
             dispatch({type: "SORT_USERS_ASC"})
         }
     }
-    
     return(
         <StyledDashboard>
             <Heading>

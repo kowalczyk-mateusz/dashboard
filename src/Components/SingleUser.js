@@ -4,8 +4,6 @@ import {Link} from 'react-router-dom'
 import Popup from './Popup'
 const SingleUser = ({id, name, username, email, city}) =>{
 const [popup, setpopup] = useState(false);
-
-
     return(
         <StyledSingleUser>
             <Id>

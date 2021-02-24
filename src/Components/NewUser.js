@@ -10,7 +10,6 @@ const NewUser = () =>{
     const [email, setEmail] = useState('')
     const [validateName, setValidateName] = useState(false)
     const [validateEmail, setValidateEmail] = useState(false)
-
     const sortedUsers = users.sort(function(a,b){return a.id - b.id})
     const usersLength = sortedUsers.length - 1;
     const lastId = sortedUsers[usersLength].id + 1;
