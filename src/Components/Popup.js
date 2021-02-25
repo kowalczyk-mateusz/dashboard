@@ -70,6 +70,7 @@ background-color: gray;
 color: white;
 border-radius: 2px;
 padding: 0.75rem 1rem;
+cursor: pointer;
 `
 const Delete = styled.button`
 background-color: red;
@@ -78,5 +79,6 @@ border-radius: 2px;
 margin-left: 1rem;
 margin-right: 1rem;
 padding: 0.75rem 2.5rem;
+cursor: pointer;
 `
 export default Popup

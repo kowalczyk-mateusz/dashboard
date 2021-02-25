@@ -41,6 +41,7 @@ border-bottom: 1px solid #C4C4C4;
 padding: 2rem 0rem;
 align-items: center;
 position: relative;
+
 `
 const Id = styled.p`
 text-align: center;
@@ -50,9 +51,11 @@ text-align: center;
 `
 const UserName = styled.p`
 text-align: center;
+overflow-wrap: anywhere;
 `
 const Email = styled.p`
 text-align: center;
+overflow-wrap: anywhere;
 `
 const City = styled.p`
 text-align: center;

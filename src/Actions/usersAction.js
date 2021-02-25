@@ -52,7 +52,6 @@ export const newUser = (id, name, email) => async (dispatch)=>{
         }
 
     })
-    console.log(data)
     dispatch({
         type: "UPDATE_DATA",
         payload:{
@@ -70,7 +69,6 @@ export const editUser = (id, name,email, username, city) => async (dispatch) =>{
             city,
         }
     })
-    console.log(data)
     dispatch({
         type: "UPDATE_DATA",
         payload:{
